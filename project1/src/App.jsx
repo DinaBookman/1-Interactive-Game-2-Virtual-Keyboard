@@ -2,9 +2,16 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Keyboard from '../../project1/src/Components/Keyboard/Keyboard.jsx'
+import Keyboard from '../src/Components/Keyboard/Keyboard.jsx'
+import Language from '../src/Components/Language/Language.jsx'
+
+
 function App() {
-const [language, setlanguage] = useState("ENGLISH");
+  const [language, setlanguage] = useState("ENGLISH");
+  function getLanguage()
+  {
+    return language
+  }
   const qwerty_mapping = [
     { hebrew: "/", english: "q" },
     { hebrew: "'", english: "w" },
@@ -39,12 +46,11 @@ const [language, setlanguage] = useState("ENGLISH");
 
   ]
 
-
   return (
-
     <>
-      <Keyboard qwerty_mapping={qwerty_mapping} />
-      <Language></Language>
+    
+      <Keyboard qwerty_mapping={qwerty_mapping} language={getLanguage}/>
+      <Language type="HEBREW" language={setlanguage}/>
     </>
   )
 }
