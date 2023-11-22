@@ -2,32 +2,51 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+import Keyboard from './Components/Keyboard/Keyboard.jsx'
 function App() {
-  const [count, setCount] = useState(0)
+const [language, setlanguage] = useState("ENGLISH");
+  const qwerty_mapping = [
+    { hebrew: "/", english: "q" },
+    { hebrew: "'", english: "w" },
+    { hebrew: "ק", english: "e" },
+    { hebrew: "ר", english: "r" },
+    { hebrew: "א", english: "t" },
+    { hebrew: "ט", english: "y" },
+    { hebrew: "ו", english: "u" },
+    { hebrew: "ן", english: "i" },
+    { hebrew: "ם", english: "o" },
+    { hebrew: "פ", english: "p" },
+    { hebrew: "ש", english: "a" },
+    { hebrew: "ד", english: "s" },
+    { hebrew: "ג", english: "d" },
+    { hebrew: "כ", english: "f" },
+    { hebrew: "ע", english: "g" },
+    { hebrew: "י", english: "h" },
+    { hebrew: "ח", english: "j" },
+    { hebrew: "ל", english: "k" },
+    { hebrew: "ך", english: "l" },
+    { hebrew: "ף", english: ";" },
+    { hebrew: "ז", english: "z" },
+    { hebrew: "ס", english: "x" },
+    { hebrew: "ב", english: "c" },
+    { hebrew: "ה", english: "v" },
+    { hebrew: "נ", english: "b" },
+    { hebrew: "מ", english: "n" },
+    { hebrew: "צ", english: "m" },
+    { hebrew: "ת", english: "," },
+    { hebrew: "ץ", english: "." },
+    { hebrew: ".", english: "/" },
+
+  ]
+
 
   return (
+
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Keyboard qwerty_mapping={qwerty_mapping} />
+
+
+
     </>
   )
 }
