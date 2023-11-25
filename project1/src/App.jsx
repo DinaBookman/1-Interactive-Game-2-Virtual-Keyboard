@@ -48,9 +48,11 @@ function App() {
 
   return (
     <>
-    
       <Keyboard qwerty_mapping={qwerty_mapping} language={getLanguage}/>
       <Language type="HEBREW" language={setlanguage}/>
+      <Language type="ENGLISH" language={setlanguage}/>
+      <Language type="UPCASE" language={setlanguage}/>
+      <Language type="LOWCASE" language={setlanguage}/>
     </>
   )
 }
