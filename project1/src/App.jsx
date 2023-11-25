@@ -42,8 +42,7 @@ function App() {
     { hebrew: "צ", english: "m" },
     { hebrew: "ת", english: "," },
     { hebrew: "ץ", english: "." },
-    { hebrew: ".", english: "/" },
-
+    { hebrew: ".", english: "/" }
   ]
 
   return (
