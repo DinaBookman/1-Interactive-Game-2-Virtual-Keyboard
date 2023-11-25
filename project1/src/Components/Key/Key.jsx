@@ -11,8 +11,13 @@ function Key(props){
      char=props.keyInput.english.toUpperCase();
     if(language=="LOWCASE")
     char=props.keyInput.english.toLowerCase();
+    function setOutput(char)
+    {
+      
+      props.setoutput(props.output+char)
+    }
    return(<>
-       <button >
+       <button onClick={() => setOutput(char)}>
            {char}
           
     </button></>)

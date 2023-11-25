@@ -4,9 +4,11 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Keyboard from '../src/Components/Keyboard/Keyboard.jsx'
 import Language from '../src/Components/Language/Language.jsx'
+import SpecialKey from '../src/Components/SpecialKey/SpecialKey.jsx'
 
 
 function App() {
+  const[output,setoutput]=useState("")
   const [language, setlanguage] = useState("ENGLISH");
   function getLanguage()
   {
@@ -47,11 +49,16 @@ function App() {
 
   return (
     <>
-      <Keyboard qwerty_mapping={qwerty_mapping} language={getLanguage}/>
-      <Language type="HEBREW" language={setlanguage}/>
+    <div>{output}</div>
+      <Keyboard qwerty_mapping={qwerty_mapping} language={getLanguage} output={output} setoutput={setoutput}/>
+      <Language type="HEBREW" output={setoutput} language={setlanguage}/>
       <Language type="ENGLISH" language={setlanguage}/>
       <Language type="UPCASE" language={setlanguage}/>
       <Language type="LOWCASE" language={setlanguage}/>
+      <SpecialKey output={output} setoutput={setoutput} type="Delete"></SpecialKey>
+      <SpecialKey output={output} setoutput={setoutput} type="EnterLine"></SpecialKey>
+      <SpecialKey output={output} setoutput={setoutput} type="Space"></SpecialKey>
+
     </>
   )
 }
