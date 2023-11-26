@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Keyboard from '../src/Components/Keyboard/Keyboard.jsx'
 import Language from '../src/Components/Language/Language.jsx'
@@ -8,8 +6,13 @@ import SpecialKey from '../src/Components/SpecialKey/SpecialKey.jsx'
 
 
 function App() {
-  const[output,setoutput]=useState("")
+  const[output,setoutput]=useState(<div></div>)
   const [language, setlanguage] = useState("ENGLISH");
+  const[color,setColor]=useState('black');
+  const[fontSize,setfontSize]=useState('14');
+  const[fontFamily,setfontFamily]=useState('ariel');
+//const messege=output.map((span)=>{span.innerText});
+
   function getLanguage()
   {
     return language
@@ -50,15 +53,10 @@ function App() {
   return (
     <>
     <div>{output}</div>
-      <Keyboard qwerty_mapping={qwerty_mapping} language={getLanguage} output={output} setoutput={setoutput}/>
-      <Language type="HEBREW" output={setoutput} language={setlanguage}/>
-      <Language type="ENGLISH" language={setlanguage}/>
-      <Language type="UPCASE" language={setlanguage}/>
-      <Language type="LOWCASE" language={setlanguage}/>
-      <SpecialKey output={output} setoutput={setoutput} type="Delete"></SpecialKey>
-      <SpecialKey output={output} setoutput={setoutput} type="EnterLine"></SpecialKey>
-      <SpecialKey output={output} setoutput={setoutput} type="Space"></SpecialKey>
-
+      <Keyboard qwerty_mapping={qwerty_mapping} language={getLanguage} setlanguage={setlanguage}
+       output={output} setoutput={setoutput} setColor={setColor} 
+       setfontSize={setfontSize} setfontFamily={setfontFamily} color={color} 
+       fontSize={fontSize} fontFamily={fontFamily}/>
     </>
   )
 }

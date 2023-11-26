@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { createElement, useState } from 'react'
 function SpecialKey(props)
 {
     function setOutput(type)
@@ -9,6 +9,9 @@ function SpecialKey(props)
             props.setoutput(props.output+" ")
         else  if(type==="EnterLine")
              props.setoutput(props.output+'\n')
+        else if(type==="Red")
+            props.setColor('Red')
+     
     }
     return( <>
         <button onClick={() => setOutput(props.type)}>{props.type}</button>
