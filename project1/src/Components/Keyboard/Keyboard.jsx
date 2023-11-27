@@ -9,7 +9,7 @@ import Language from '../Language/Language.jsx'
 
 
 const qwerty_mapping = [
-  { hebrew: "1", english: "1" },
+  { hebrew: "1", english: "1" ,im:'😍'},
   { hebrew: "2", english: "2" },
   { hebrew: "3", english: "3" },
   { hebrew: "4", english: "4" },
@@ -83,7 +83,9 @@ function showKeys(language,spanStyles,output,setoutput) {
   var lang, key;
   if (language == "English"||language==='CapsLock'||language==='LowerCase')
     lang = "english";
-  else
+    if(language==='emoji')
+    lang='im'
+   else
     lang = "hebrew";
   
   let x = qwerty_mapping.map((e) => {

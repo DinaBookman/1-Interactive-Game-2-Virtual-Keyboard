@@ -38,6 +38,7 @@ function SpecialKey(props) {
                         let funcToDo=props.popUndo()
                         funcToDo()
                     }
+                    
             default:
                 props.setColor(type)
         }

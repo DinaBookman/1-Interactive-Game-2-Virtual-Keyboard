@@ -5,16 +5,12 @@ function Language(props) {
         let displayLang;
         if (props.language === 'English' || props.language === 'CapsLock')
             displayLang = 'Hebrew';
+        else if(props.language=='emoji') 
+              displayLang='im'
         else displayLang = 'English'
         return displayLang;
     }
-    // function chooseCase() {
-    //     let displaycase;
-    //     if (props.language === 'English')
-    //     displaycase = 'Hebrew';
-    //     else displayLang = 'English'
-    //     return displaycase;
-    // }
+    
     function chooseCase() {
         let displayCase;
         if (props.language === 'CapsLock')
@@ -40,6 +36,7 @@ function Language(props) {
         <button onClick={() => { setCase() }}>
             Aa
         </button>
+        <button onClick={()=>{props.setlanguage('emoji')}}>emoji</button>
     </>)
 }
 export default Language
