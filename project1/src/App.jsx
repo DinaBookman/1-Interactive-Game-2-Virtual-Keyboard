@@ -6,18 +6,20 @@ import SpecialKey from '../src/Components/SpecialKey/SpecialKey.jsx'
 
 
 function App() {
-  const[output,setoutput]=useState(<div></div>)
+  /*const[output,setoutput]=useState(<div></div>)
   const [language, setlanguage] = useState("ENGLISH");
   const[color,setColor]=useState('black');
   const[fontSize,setfontSize]=useState('14');
-  const[fontFamily,setfontFamily]=useState('ariel');
+  const[fontFamily,setfontFamily]=useState('ariel');*/
 //const messege=output.map((span)=>{span.innerText});
 
-  function getLanguage()
+  /*function getLanguage()
   {
     return language
   }
-  const qwerty_mapping = [
+  */
+
+  /*const qwerty_mapping = [
     { hebrew: "/", english: "q" },
     { hebrew: "'", english: "w" },
     { hebrew: "ק", english: "e" },
@@ -48,7 +50,7 @@ function App() {
     { hebrew: "ת", english: "," },
     { hebrew: "ץ", english: "." },
     { hebrew: ".", english: "/" }
-  ]
+  ]*/
 
   return (
     <>

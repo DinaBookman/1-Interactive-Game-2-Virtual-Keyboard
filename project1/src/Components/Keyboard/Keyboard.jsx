@@ -5,9 +5,95 @@ import Language from '../Language/Language.jsx'
 
 
 function Keyboard(props) {
+const[output,setoutput]=useState(<div></div>)
+  const [language, setlanguage] = useState("ENGLISH");
+  const[color,setColor]=useState('black');
+  const[fontSize,setfontSize]=useState('14');
+  const[fontFamily,setfontFamily]=useState('ariel'); 
+ 
+     
+    const qwerty_mapping = [
+        { hebrew: "/", english: "q" },
+        { hebrew: "'", english: "w" },
+        { hebrew: "ק", english: "e" },
+        { hebrew: "ר", english: "r" },
+        { hebrew: "א", english: "t" },
+        { hebrew: "ט", english: "y" },
+        { hebrew: "ו", english: "u" },
+        { hebrew: "ן", english: "i" },
+        { hebrew: "ם", english: "o" },
+        { hebrew: "פ", english: "p" },
+        { hebrew: "ש", english: "a" },
+        { hebrew: "ד", english: "s" },
+        { hebrew: "ג", english: "d" },
+        { hebrew: "כ", english: "f" },
+        { hebrew: "ע", english: "g" },
+        { hebrew: "י", english: "h" },
+        { hebrew: "ח", english: "j" },
+        { hebrew: "ל", english: "k" },
+        { hebrew: "ך", english: "l" },
+        { hebrew: "ף", english: ";" },
+        { hebrew: "ז", english: "z" },
+        { hebrew: "ס", english: "x" },
+        { hebrew: "ב", english: "c" },
+        { hebrew: "ה", english: "v" },
+        { hebrew: "נ", english: "b" },
+        { hebrew: "מ", english: "n" },
+        { hebrew: "צ", english: "m" },
+        { hebrew: "ת", english: "," },
+        { hebrew: "ץ", english: "." },
+        { hebrew: ".", english: "/" }
+      ]
+   
+      function showKeys()
+      {let lang;
+        if (language == "ENGLISH")
+        lang=english;
+        else
+          lang=hebrew;
+        for(let i=0;i<29;i++)
+           createButton(qwerty_mapping[i].lang)
+      }
+      function  createButton(key) {
+        return(<><button  onClick={() => setOutput(key)} >{key}</button></>)}
+        /*var element = document.createElement("BUTTON");
+        var text = document.createTextNode(key);
+        element.appendChild(text);
+        document.body.appendChild(element);
+       // onClick={() => setOutput(char)
+      }
+      
+        
+ 
 const style=[props.color,props.fontFamily,props.fontSize]
+const spanStyles = {
+    "color": style[0],
+    "fontFamily": style[1],
+    "fontSize": style[2]
+  };
+  let char;
+  //let language = props.language()
+  if (language == "ENGLISH")
+    char = props.keyInput.english;
+  if (language == "HEBREW")
+    char = props.keyInput.hebrew;
+  if (language == "UPCASE")
+    char = props.keyInput.english.toUpperCase();
+  if (language == "LOWCASE")
+    char = props.keyInput.english.toLowerCase();
+  let currentStyle = props.styles;
+  function setOutput(char) {
+     let object=<span style={spanStyles}>{char}</span>
+     let update_input = <span>{props.output}<span style = {spanStyles}>{char}</span></span>;
+      props.setoutput(update_input)
+  }
+  
+
     return (<>
-        <div>
+
+    {showKeys()}</>)/*<>
+    
+       <div>
             <Key keyInput={props.qwerty_mapping[0]} language={props.language} style={style} output={props.output} setoutput={props.setoutput}></Key>
             <Key keyInput={props.qwerty_mapping[1]} language={props.language} style={style} output={props.output} setoutput={props.setoutput}></Key>
             <Key keyInput={props.qwerty_mapping[2]} language={props.language} style={style} output={props.output} setoutput={props.setoutput}></Key>
@@ -58,5 +144,19 @@ const style=[props.color,props.fontFamily,props.fontSize]
 
     </>
     )
-}
+    */
+
+
+
+ }
+    
 export default Keyboard
+ /*const defualtKeyboard1 = ["q", "w", "r", "t", "y", "u", "i", "o", "p",]
+   const defualtKeyboard2=["a", "s", "d", "f", "g", "h", "j", "k", "l", "ENTER",]
+   const defualtKeyboard3=["z", "x", "c", "v", "b", "n", "m", ".", ",","SPACE"];
+   const  hebrewKeyboard1 = [".", ",", "ק", "ר", "א", "ט", "ו", "ן", "ם", "פ",]
+   const  hebrewKeyboard2 =["ש", "ד", "ג", "כ", "ע", "י", "ח", "ל", "ך", "ף", "ENTER",]
+   const  hebrewKeyboard3 = ["ז", "ס", "ב", "ה", "נ", "מ", "צ", "ת", "ץ","SPACE"];
+   const numberKeyboard1=["1","2","3","4","5","6","7","8","9","0",]
+   const numberKeyboard2= ["!","@","£","$","%","^","&","*","(",")",]
+    const numberKeyboard3= ["_","+","=","-",":",";",",",".","<",">","?","/",">"]*/
