@@ -54,13 +54,19 @@ function App() {
 
   return (
     <>
+     <Keyboard/>
+     
+    </>
+  )
+}
+
+export default App
+/*return (
+    <>
     <div>{output}</div>
       <Keyboard qwerty_mapping={qwerty_mapping} language={getLanguage} setlanguage={setlanguage}
        output={output} setoutput={setoutput} setColor={setColor} 
        setfontSize={setfontSize} setfontFamily={setfontFamily} color={color} 
        fontSize={fontSize} fontFamily={fontFamily}/>
     </>
-  )
-}
-
-export default App
+  ) */

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import React from 'react'
 import Key from '../Key/Key.jsx'
 import SpecialKey from '../SpecialKey/SpecialKey.jsx'
@@ -5,7 +6,7 @@ import Language from '../Language/Language.jsx'
 
 
 function Keyboard(props) {
-const[output,setoutput]=useState(<div></div>)
+//const[output,setoutput]=useState(<div></div>)
   const [language, setlanguage] = useState("ENGLISH");
   const[color,setColor]=useState('black');
   const[fontSize,setfontSize]=useState('14');
@@ -45,23 +46,25 @@ const[output,setoutput]=useState(<div></div>)
         { hebrew: ".", english: "/" }
       ]
    
-      function showKeys()
-      {let lang;
+      function showKeys(){
+        var lang,key;
         if (language == "ENGLISH")
-        lang=english;
+        lang="english";
         else
-          lang=hebrew;
-        for(let i=0;i<29;i++)
-           createButton(qwerty_mapping[i].lang)
+          lang="hebrew";
+        for(let i=0;i<29;i++){
+        key=qwerty_mapping[i][lang];
+        if (language == "UPCASE")
+          key = (qwerty_mapping[i][lang]).toUpperCase();
+        if (language == "LOWCASE")
+        key = (qwerty_mapping[i][lang]).toLowerCase();
+        createButton(key)
+        }
       }
+      
       function  createButton(key) {
-        return(<><button  onClick={() => setOutput(key)} >{key}</button></>)}
-        /*var element = document.createElement("BUTTON");
-        var text = document.createTextNode(key);
-        element.appendChild(text);
-        document.body.appendChild(element);
-       // onClick={() => setOutput(char)
-      }
+        return(<button  onClick={() => setOutput(key)} >{key}</button>)}
+        
       
         
  
@@ -73,15 +76,18 @@ const spanStyles = {
   };
   let char;
   //let language = props.language()
-  if (language == "ENGLISH")
-    char = props.keyInput.english;
+  /*if (language == "ENGLISH")
+    char =  keyInput.english;
   if (language == "HEBREW")
-    char = props.keyInput.hebrew;
-  if (language == "UPCASE")
+    char =  keyInput.hebrew;
+  */
+  /*if (language == "UPCASE")
     char = props.keyInput.english.toUpperCase();
   if (language == "LOWCASE")
-    char = props.keyInput.english.toLowerCase();
-  let currentStyle = props.styles;
+    char =  keyInput.english.toLowerCase();
+  */
+  let currentStyle =   spanStyles;
+  
   function setOutput(char) {
      let object=<span style={spanStyles}>{char}</span>
      let update_input = <span>{props.output}<span style = {spanStyles}>{char}</span></span>;
@@ -90,8 +96,9 @@ const spanStyles = {
   
 
     return (<>
-
-    {showKeys()}</>)/*<>
+    
+    {showKeys()}
+    <button  onClick={() => setOutput(A)} >A</button></>)/*<>
     
        <div>
             <Key keyInput={props.qwerty_mapping[0]} language={props.language} style={style} output={props.output} setoutput={props.setoutput}></Key>
