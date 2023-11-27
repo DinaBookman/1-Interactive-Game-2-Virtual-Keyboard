@@ -33,18 +33,25 @@ function SpecialKey(props) {
                     props.setoutput([])
                     }
                 break;
+                case 'Undo':
+                    {
+                        let funcToDo=props.popUndo()
+                        funcToDo()
+                    }
             default:
                 props.setColor(type)
         }
     }
     function createButtons(setOutput) {
-        const specialKeys = ['Red', 'Green', 'Blue','Turquoise', 'Delete', 'Space', 'increase Font Size', 'decrease Font Size','clear','DeleteAll']
+        const specialKeys = ['Red', 'Green', 'Blue','Turquoise', 'Delete', 'Space', 'increase Font Size', 'decrease Font Size','clear','DeleteAll','Undo']
         let x = specialKeys.map((s) => {
             return <button onClick={() => setOutput(s)}>{s}</button>
         })
         return x
     }
 
-    return (<>{createButtons(setOutput)}</>)
+    return (<>{createButtons(setOutput)}
+
+    </>)
 }
 export default SpecialKey;

@@ -109,6 +109,10 @@ function addUndo(bb)
 {
   undo.push(bb)
 }
+function popUndo()
+{
+ return  undo.pop()
+}
   const style = [color, fontFamily, fontSize]
   const spanStyles = {
     "color": style[0],
@@ -119,7 +123,7 @@ function addUndo(bb)
 
   return (<>
     {showKeys(language,spanStyles,props.output,props.setoutput)}
-      <SpecialKey output={props.output} setoutput={props.setoutput} setColor={setColor} size={fontSize} setsize={setfontSize}/>
+      <SpecialKey output={props.output} setoutput={props.setoutput} setColor={setColor} size={fontSize} setsize={setfontSize} addUndo={addUndo} undo={undo} popUndo={popUndo}/>
       <Language setlanguage={setlanguage} language={language} addUndo={addUndo}/>
 </>
 )

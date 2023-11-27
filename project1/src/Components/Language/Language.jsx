@@ -29,7 +29,7 @@ function Language(props) {
         props.setlanguage(keyCase)
     }
     function setLangu() {
-        props.addUndo(()=>{setlanguage(props.language)})
+        props.addUndo(()=>{props.setlanguage(props.language)})
         props.setlanguage(display)
     }
 
