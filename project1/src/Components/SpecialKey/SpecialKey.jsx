@@ -1,30 +1,48 @@
 import React, { createElement, useState } from 'react'
 function SpecialKey(props) {
     function setOutput(type) {
-        if (type === "Delete")
-            props.setoutput(props.output.slice(0, -1))
-        else if (type === "Space")
-    
-           { let object = <span >{" "}</span>
-           let update_input = [...props.output,object,object,object]
-           props.setoutput(update_input)
-    } 
-        else if (type === "Tab")
-            { 
-                let x='\t'
-            let object = <span >{x}</span>
-            let update_input = [...props.output,object]
-            props.setoutput(update_input)}
-        else
-            props.setColor(type)
+        switch (type) {
+            case "Delete":
+                props.setoutput(props.output.slice(0, -1))
+                break;
+            case "Space":
+                {
+                    let object = <span >{" "}</span>
+                    let update_input = [...props.output, object, object, object]
+                    props.setoutput(update_input)
+                }break;
+
+
+            case "Space":
+                {
+                    let object = <span >{" "}</span>
+                    let update_input = [...props.output, object]
+                    props.setoutput(update_input)
+                }break;
+            case 'increase Font Size':
+                {
+                    if(props.size<50)
+                    props.setsize(parseInt(props.size)+6)
+                }break;
+            case 'decrease Font Size':
+                {if(props.size>8)
+                    props.setsize(parseInt(props.size)-6)
+                }break;
+                case 'DeleteAll':
+                    {
+                    props.setoutput([])
+                    }
+                break;
+            default:
+                props.setColor(type)
+        }
     }
     function createButtons(setOutput) {
-        const specialKeys = ['Red', 'Green', 'Tab', 'Blue','Delete','Space']
+        const specialKeys = ['Red', 'Green', 'Blue','Turquoise', 'Delete', 'Space', 'increase Font Size', 'decrease Font Size','clear','DeleteAll']
         let x = specialKeys.map((s) => {
-           return <button onClick={() => setOutput(s)}>{s}</button>
+            return <button onClick={() => setOutput(s)}>{s}</button>
         })
         return x
-
     }
 
     return (<>{createButtons(setOutput)}</>)

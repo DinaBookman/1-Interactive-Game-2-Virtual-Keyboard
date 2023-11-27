@@ -81,30 +81,34 @@ function createButton(key,spanStyles,output,setoutput) {
 }
 function showKeys(language,spanStyles,output,setoutput) {
   var lang, key;
-  if (language == "ENGLISH")
+  if (language == "English"||language==='CapsLock'||language==='LowerCase')
     lang = "english";
   else
     lang = "hebrew";
   
   let x = qwerty_mapping.map((e) => {
     key = e[lang];
-    if (language == "UPCASE")
+    if (language == "CapsLock")
       key = (e[lang]).toUpperCase();
-    if (language == "LOWCASE")
-      key = (e[lang]).toLowerCase();
+    if(language=='LowerCase')
+      key = (e[lang]);
+
     return (createButton(key,spanStyles,output,setoutput))
   })
+
   return x;
 }
+const undo=[]
+
 function Keyboard(props) {
-
-
-
-const [language, setlanguage] = useState("ENGLISH");
+const [language, setlanguage] = useState("English");
 const [color, setColor] = useState('black');
 const [fontSize, setfontSize] = useState('14');
 const [fontFamily, setfontFamily] = useState('ariel');
-
+function addUndo(bb)
+{
+  undo.push(bb)
+}
   const style = [color, fontFamily, fontSize]
   const spanStyles = {
     "color": style[0],
@@ -115,7 +119,8 @@ const [fontFamily, setfontFamily] = useState('ariel');
 
   return (<>
     {showKeys(language,spanStyles,props.output,props.setoutput)}
-      <SpecialKey output={props.output} setoutput={props.setoutput} setColor={setColor}/>
+      <SpecialKey output={props.output} setoutput={props.setoutput} setColor={setColor} size={fontSize} setsize={setfontSize}/>
+      <Language setlanguage={setlanguage} language={language} addUndo={addUndo}/>
 </>
 )
 }

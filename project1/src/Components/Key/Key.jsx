@@ -7,16 +7,15 @@ function Key(props) {
     "fontSize": props.style[2]
   };
   let char;
-  let language = props.language()
-  if (language == "ENGLISH")
+ 
+  if ( props.language == "English")
     char = props.keyInput.english;
-  if (language == "HEBREW")
+  if ( props.language == "Hebrew")
     char = props.keyInput.hebrew;
-  if (language == "UPCASE")
-    char = props.keyInput.english.toUpperCase();
-  if (language == "LOWCASE")
-    char = props.keyInput.english.toLowerCase();
-  let currentStyle = props.styles;
+  if ( props.language === "CapsLock"){
+    char = props.keyInput.english.toUpperCase();}
+    if(props.language=='LowerCase')
+    char=props.keyInput.english;
   function setOutput(char) {
      let object=<span style={spanStyles}>{char}</span>
      let update_input = <span>{props.output}<span style = {spanStyles}>{char}</span></span>;
