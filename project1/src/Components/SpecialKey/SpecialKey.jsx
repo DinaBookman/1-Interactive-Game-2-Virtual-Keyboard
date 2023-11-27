@@ -4,16 +4,22 @@ function SpecialKey(props) {
         if (type === "Delete")
             props.setoutput(props.output.slice(0, -1))
         else if (type === "Space")
-            props.setoutput(props.output + " ")
-        else if (type === "EnterLine")
-            { let object = <span >{'   '}</span>
-            let update_input = [...output,object]
-            setoutput(update_input)}
+    
+           { let object = <span >{" "}</span>
+           let update_input = [...props.output,object,object,object]
+           props.setoutput(update_input)
+    } 
+        else if (type === "Tab")
+            { 
+                let x='\t'
+            let object = <span >{x}</span>
+            let update_input = [...props.output,object]
+            props.setoutput(update_input)}
         else
             props.setColor(type)
     }
     function createButtons(setOutput) {
-        const specialKeys = ['Red', 'Yellow', 'Tab', 'Blue']
+        const specialKeys = ['Red', 'Green', 'Tab', 'Blue','Delete','Space']
         let x = specialKeys.map((s) => {
            return <button onClick={() => setOutput(s)}>{s}</button>
         })
