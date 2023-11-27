@@ -51,11 +51,12 @@ function App() {
     { hebrew: "ץ", english: "." },
     { hebrew: ".", english: "/" }
   ]*/
-
+  const[output,setoutput]=useState([<span></span>])
   return (
     <>
-     <Keyboard/>
-     
+    <div id="outPutDiv">{output}</div>
+     <Keyboard output={output} setoutput={setoutput}/>
+  
     </>
   )
 }
