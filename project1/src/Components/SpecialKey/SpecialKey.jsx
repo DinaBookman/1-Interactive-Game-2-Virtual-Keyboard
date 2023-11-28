@@ -3,47 +3,88 @@ function SpecialKey(props) {
     function setOutput(type) {
         switch (type) {
             case "Delete":
-                props.addUndo(()=>{ setOutput(props.output.pop(),spanStyles,output,setoutput)})//
+                let span = props.output[props.output.length - 1]
                 props.setoutput(props.output.slice(0, -1))
+                props.addUndo(() => { props.setoutput([...props.output.slice(0, -1), span]) })
                 break;
             case "Space":
                 {
-                    props.addUndo(()=>{setOutput( setoutput(props.output.slice(0, -1)),spanStyles,output,setoutput)})
+                    props.addUndo(() => { props.setoutput(props.output) })
                     let object = <span >{" "}</span>
                     let update_input = [...props.output, object]
                     props.setoutput(update_input)
-                }break;
+                } break;
             case 'increase Font Size':
                 {
-                    
-                    if(props.size<50)
-                    props.addUndo(()=>{setsize(parseInt(props.size)-6)})
-                    props.setsize(parseInt(props.size)+6)
-                }break;
-            case 'decrease Font Size':
-                {if(props.size>8)
-                    props.addUndo(()=>{setsize(parseInt(props.size)-6)})
-                    props.setsize(parseInt(props.size)-6)
-                }break;
-                case 'Clear':
-                    {
-                    props.addUndo(()=>{var all=props.output
-                    all.map((x)=>setOutput(x,spanStyles,output,setoutput))})
-                    props.setoutput([])
+
+                    if (props.size < 100) {
+                        props.addUndo(() => { props.setsize(props.size) })
+                        props.setsize(parseInt(props.size) + 6)
                     }
+                } break;
+            case 'decrease Font Size':
+                {
+                    if (props.size > 8) {
+                        props.addUndo(() => { props.setsize(props.size) })
+                        props.setsize(parseInt(props.size) - 6)
+                    }
+                } break;
+            case 'Clear':
+                {
+                    props.addUndo(() => {
+                        let all = props.output
+                        props.setoutput(all)
+                    })
+                    props.setoutput([])
+                }
                 break;
-                case 'Undo':
-                    {
-                        let funcToDo=props.popUndo()
+            case 'Undo':
+                {
+                    if (props.undo.length > 0) {
+                        let funcToDo = props.popUndo()
                         funcToDo()
                     }
-                    
+                } break
+            case 'UpperAll': {
+                props.addUndo(() => { props.setoutput(props.output) })
+               let x = props.output.map((e) => {
+                let key=e.props.children;
+                    if (e.props.children.charCodeAt(0) > 64 && e.props.children.charCodeAt(0) < 123) {
+                        
+                        key=key.toUpperCase()
+                    }
+                    let object = <span style={e.props.style}>{key}</span>
+                    return object
+                })
+                props.setoutput(x)
+            } break
+            case 'cursive':
+                {
+                    props.addUndo(() => { props.setfontFamily(props.fontFamily) })
+                    props.setfontFamily('cursive')
+                } break
+                case 'LowerAll':{
+                    props.addUndo(() => { props.setoutput(props.output) })
+                    let x = props.output.map((e) => {
+                     let key=e.props.children;
+                         if (e.props.children.charCodeAt(0) > 64 && e.props.children.charCodeAt(0) < 123) {
+                             
+                             key=key.toLowerCase()
+                         }
+                         let object = <span style={e.props.style}>{key}</span>
+                         return object
+                     })
+                     props.setoutput(x)
+                }break;
             default:
-                props.setColor(type)
+                {
+                    props.addUndo(() => { props.setColor(props.color) })
+                    props.setColor(type)
+                }
         }
     }
     function createButtons(setOutput) {
-        const specialKeys = ['Red', 'Green', 'Blue','Turquoise', 'Delete', 'Space', 'increase Font Size', 'decrease Font Size','Clear','Undo']
+        const specialKeys = ['Red', 'Green', 'Blue', 'Turquoise', 'Delete', 'Space', 'increase Font Size', 'decrease Font Size', 'Clear', 'Undo', 'cursive', 'UpperAll','LowerAll']
         let x = specialKeys.map((s) => {
             return <button onClick={() => setOutput(s)}>{s}</button>
         })
