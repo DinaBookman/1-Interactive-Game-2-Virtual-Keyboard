@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import React from 'react'
-import Key from '../Key/Key.jsx'
 import SpecialKey from '../SpecialKey/SpecialKey.jsx'
 import Language from '../Language/Language.jsx'
 
@@ -8,65 +7,50 @@ import Language from '../Language/Language.jsx'
 
 
 
-const qwerty_mapping = [
+const qwerty_mapping1 = [
   { hebrew: "1", english: "1" ,im:'😍'},
-  { hebrew: "2", english: "2" },
-  { hebrew: "3", english: "3" },
-  { hebrew: "4", english: "4" },
-  { hebrew: "5", english: "5" },
-  { hebrew: "6", english: "6" },
-  { hebrew: "7", english: "7" },
-  { hebrew: "8", english: "8" },
-  { hebrew: "9", english: "9" },
-  { hebrew: "0", english: "0" },
-  { hebrew: "/", english: "q" },
-  { hebrew: "'", english: "w" },
-  { hebrew: "ק", english: "e" },
-  { hebrew: "ר", english: "r" },
-  { hebrew: "א", english: "t" },
-  { hebrew: "ט", english: "y" },
-  { hebrew: "ו", english: "u" },
-  { hebrew: "ן", english: "i" },
-  { hebrew: "ם", english: "o" },
-  { hebrew: "פ", english: "p" },
-  { hebrew: "ש", english: "a" },
-  { hebrew: "ד", english: "s" },
-  { hebrew: "ג", english: "d" },
-  { hebrew: "כ", english: "f" },
-  { hebrew: "ע", english: "g" },
-  { hebrew: "י", english: "h" },
-  { hebrew: "ח", english: "j" },
-  { hebrew: "ל", english: "k" },
-  { hebrew: "/", english: "q" },
-  { hebrew: "'", english: "w" },
-  { hebrew: "ק", english: "e" },
-  { hebrew: "ר", english: "r" },
-  { hebrew: "א", english: "t" },
-  { hebrew: "ט", english: "y" },
-  { hebrew: "ו", english: "u" },
-  { hebrew: "ן", english: "i" },
-  { hebrew: "ם", english: "o" },
-  { hebrew: "פ", english: "p" },
-  { hebrew: "ש", english: "a" },
-  { hebrew: "ד", english: "s" },
-  { hebrew: "ג", english: "d" },
-  { hebrew: "כ", english: "f" },
-  { hebrew: "ע", english: "g" },
-  { hebrew: "י", english: "h" },
-  { hebrew: "ח", english: "j" },
-  { hebrew: "ל", english: "k" },
-  { hebrew: "ך", english: "l" },
-  { hebrew: "ף", english: ";" },
-  { hebrew: "ז", english: "z" },
-  { hebrew: "ס", english: "x" },
-  { hebrew: "ב", english: "c" },
-  { hebrew: "ה", english: "v" },
-  { hebrew: "נ", english: "b" },
-  { hebrew: "מ", english: "n" },
-  { hebrew: "צ", english: "m" },
-  { hebrew: "ת", english: "," },
-  { hebrew: "ץ", english: "." },
-  { hebrew: ".", english: "/" }
+  { hebrew: "2", english: "2" ,im:'😂'},
+  { hebrew: "3", english: "3" ,im:'🤣'},
+  { hebrew: "4", english: "4" ,im:'😋'},
+  { hebrew: "5", english: "5" ,im:'😘'},
+  { hebrew: "6", english: "6" ,im:'😎'},
+  { hebrew: "7", english: "7" ,im:'😪'},
+  { hebrew: "8", english: "8" ,im:'😀'},
+  { hebrew: "9", english: "9" ,im:'😣'},
+  { hebrew: "0", english: "0" ,im:'😛'}]
+const qwerty_mapping2 = [
+  { hebrew: "/", english: "q" ,im:'👧'},
+  { hebrew: "'", english: "w" ,im:'👦'},
+  { hebrew: "ק", english: "e" ,im:'👵'},
+  { hebrew: "ר", english: "r" ,im:'👴'},
+  { hebrew: "א", english: "t" ,im:'💂‍♂️'},
+  { hebrew: "ט", english: "y" ,im:'👷‍♂️'},
+  { hebrew: "ו", english: "u" ,im:'👩‍💻'},
+  { hebrew: "ן", english: "i" ,im:'👩‍🎓'},
+  { hebrew: "ם", english: "o" ,im:'💁‍♂️'},
+  { hebrew: "פ", english: "p" ,im:'👩‍🏫'}]
+const qwerty_mapping3 = [
+  { hebrew: "ש", english: "a" ,im:'👎'},
+  { hebrew: "ד", english: "s" ,im:'👏'},
+  { hebrew: "ג", english: "d" ,im:'👌'},
+  { hebrew: "כ", english: "f" ,im:'☝'},
+  { hebrew: "ע", english: "g" ,im:'🤲'},
+  { hebrew: "י", english: "h" ,im:'🤝'},
+  { hebrew: "ח", english: "j" ,im:'✍'},
+  { hebrew: "ל", english: "k" ,im:'🤏'},
+  { hebrew: "ך", english: "l" ,im:'🤙'},
+  { hebrew: "ף", english: ";" ,im:'👍'}]
+const qwerty_mapping4 = [
+  { hebrew: "ז", english: "z" ,im:'💖'},
+  { hebrew: "ס", english: "x" ,im:'💔'},
+  { hebrew: "ב", english: "c" ,im:'💓'},
+  { hebrew: "ה", english: "v" ,im:'🤍'},
+  { hebrew: "נ", english: "b" ,im:'🧡'},
+  { hebrew: "מ", english: "n" ,im:'💚'},
+  { hebrew: "צ", english: "m" ,im:'💙'},
+  { hebrew: "ת", english: "," ,im:'💜'},
+  { hebrew: "ץ", english: "." ,im:'🤎'},
+  { hebrew: ".", english: "/" ,im:'🖤'}
 ]
 let char;
  
@@ -79,7 +63,7 @@ function setOutput(char,spanStyles,output,setoutput) {
 function createButton(key,spanStyles,output,setoutput) {
   return (<button onClick={() => setOutput(key,spanStyles,output,setoutput)} >{key}</button>)
 }
-function showKeys(language,spanStyles,output,setoutput) {
+function showKeys(language,spanStyles,output,setoutput,keyRow) {
   var lang, key;
   if (language == "English"||language==='CapsLock'||language==='LowerCase')
     lang = "english";
@@ -88,7 +72,7 @@ function showKeys(language,spanStyles,output,setoutput) {
    else
     lang = "hebrew";
   
-  let x = qwerty_mapping.map((e) => {
+  let x =  keyRow.map((e) => {
     key = e[lang];
     if (language == "CapsLock")
       key = (e[lang]).toUpperCase();
@@ -124,7 +108,11 @@ function popUndo()
   let currentStyle = spanStyles;
 
   return (<>
-    {showKeys(language,spanStyles,props.output,props.setoutput)}
+  <div>{showKeys(language,spanStyles,props.output,props.setoutput,qwerty_mapping1)}</div>
+  <div>{showKeys(language,spanStyles,props.output,props.setoutput,qwerty_mapping2)}</div>
+  <div>{showKeys(language,spanStyles,props.output,props.setoutput,qwerty_mapping3)}</div>
+  <div>{showKeys(language,spanStyles,props.output,props.setoutput,qwerty_mapping4)}</div>
+    
       <SpecialKey output={props.output} setoutput={props.setoutput} setColor={setColor} size={fontSize} setsize={setfontSize} addUndo={addUndo} undo={undo} popUndo={popUndo}/>
       <Language setlanguage={setlanguage} language={language} addUndo={addUndo}/>
 </>
