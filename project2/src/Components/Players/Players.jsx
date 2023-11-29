@@ -7,15 +7,18 @@ function Players() {
     // }
     function addPlayer() {
         let person = prompt("Please enter UserName:", "Name...");
-        setplayers([...players,person])
+        let enabled;
+        if (players.length==0)
+             enabled=true
+        else enabled=false
+        setplayers([...players,{'userName':person,'enabled':enabled}])
     }
     const [players,setplayers]=useState([])
     function showPlayer(){
-       return( players.map((userName)=>{
-            return <Player userName={userName} players={players} setplayers={setplayers}/>
+       return( players.map((user)=>{
+            return <Player user={user} players={players} setplayers={setplayers}/>
         }))
     }
-    
     return (<>
         <button onClick={()=>addPlayer()}>add Player</button>
       {showPlayer()}
