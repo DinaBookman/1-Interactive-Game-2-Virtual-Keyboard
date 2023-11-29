@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import React from 'react'
+import OptionButton from '../OptionButton/OptionButton.jsx'
 
-const MAX_WIN_NUMBER = 100
+const MAX_WIN_NUMBER = 10
 let RangeRandom=()=>Math.floor(Math.random() * MAX_WIN_NUMBER)
 function Player(props) {
     
@@ -44,8 +45,8 @@ function Player(props) {
             let comma="";
             if(games.length>=2)
                     comma=","
-            setgames([...games,comma, steps ])   
-            return(<OptionButton/>)
+            setgames([...games,comma, steps+1 ])   
+             setstart(true)
         }
     }
     function newGame(){
@@ -53,6 +54,7 @@ function Player(props) {
         setnumber(RangeRandom)
         setsteps(0)
     }
+    const [start,setstart]=useState(false)
     return (<>
         <div>{"gamer name: "} {props.name}</div>
         <div>{'press buttons to reach 100: '}{number}</div>
@@ -63,7 +65,7 @@ function Player(props) {
             <button onClick={() => calc('/2')}>{'/2'}</button>
             <button onClick={() => calc('+1')}>{'+1'}</button>
             <button onClick={() => calc('-1')}>{'-1'}</button>
-           
+           {start??<OptionButton/>}
         </div>
     </>)
 } export default Player
