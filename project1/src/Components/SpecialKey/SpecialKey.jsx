@@ -1,5 +1,7 @@
 import React, { createElement, useState } from 'react'
+import { HexColorPicker } from "react-colorful";
 function SpecialKey(props) {
+    const[openColor,setopenColor]=useState(false)
     function setOutput(type) {
         switch (type) {
             case "Delete":
@@ -90,8 +92,16 @@ function SpecialKey(props) {
         })
         return x
     }
+    function changeOpenColor()
+    {
+        if(openColor)
+            setopenColor(false)
+        else setopenColor(true)
+    }
 
     return (<>{createButtons(setOutput)}
+    {openColor&&<HexColorPicker color={props.color} onChange={props.setColor} />}
+    <button onClick={()=>{changeOpenColor() }}>change color</button>
 
     </>)
 }
