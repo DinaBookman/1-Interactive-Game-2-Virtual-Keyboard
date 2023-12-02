@@ -4,7 +4,7 @@ function Language(props) {
     function chooseLang() {
 
         let displayLang;
-        if (props.language === 'English' || props.language === 'CapsLock')
+        if (props.language === 'English' || props.language === 'CapsLock'||props.language==='LowerCase')
             displayLang = 'Hebrew';
         else displayLang = 'English'
         return displayLang;
