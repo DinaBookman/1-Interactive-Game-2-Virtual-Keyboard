@@ -86,7 +86,7 @@ function SpecialKey(props) {
         }
     }
     function createButtons(setOutput) {
-        const specialKeys = ['Red', 'Green', 'Blue', 'Turquoise', 'Delete', 'Space', 'increase Font Size', 'decrease Font Size', 'Clear', 'Undo', 'cursive', 'UpperAll','LowerAll']
+        const specialKeys = ['Delete', 'Space', 'increase Font Size', 'decrease Font Size', 'Clear', 'Undo', 'cursive', 'UpperAll','LowerAll']
         let x = specialKeys.map((s) => {
             return <button onClick={() => setOutput(s)}>{s}</button>
         })
