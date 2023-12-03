@@ -51,6 +51,15 @@ function Players() {
     setpassivePlayers(newPassivePlayers)
     setplayers([...players,itemToAdd])
   }
+  function removeItemFromPassivePlayers(name)
+  {
+    let x = []
+   passivePlayers.map((p) => {
+        if (p.userName != name)
+            x.push(p)
+    })
+    setpassivePlayers(x)
+  }
   function changePlayerToPassive(name)
   {
     let returnRemove=removeItem(name,players)
@@ -63,7 +72,7 @@ function Players() {
     const [passivePlayers,setpassivePlayers]=useState([])
     function showPlayer(array,passive){
        return( array.map((user)=>{
-            return <Player  changeEnabeld={changeEnabeld} user={user} passive={passive}players={players}  setplayers={setplayers} changePlayerToPassive={changePlayerToPassive} changePlayerToActive={changePlayerToActive}/>
+            return <Player  removeItemFromPassivePlayers={removeItemFromPassivePlayers} changeEnabeld={changeEnabeld} user={user} passive={passive} players={players}  setplayers={setplayers} changePlayerToPassive={changePlayerToPassive} changePlayerToActive={changePlayerToActive}/>
         }))
     }
     return (<>

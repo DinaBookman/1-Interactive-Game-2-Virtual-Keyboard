@@ -14,12 +14,7 @@ function OptionButton(props) {
         localStorage.removeItem(props.name)
         let profile = props.games
         localStorage.setItem(props.name, profile)
-        let x = []
-        props.players.map((p) => {
-            if (p.userName != props.name)
-                x.push(p)
-        })
-        props.setplayers(x)
+        props.removeItemFromPassivePlayers(props.name)
     }
     return (
         <><button onClick={() => newGame()}>{'Start new Game'}</button>

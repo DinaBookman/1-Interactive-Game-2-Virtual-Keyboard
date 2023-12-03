@@ -39,7 +39,7 @@ function Player(props) {
         <div> {'Previous Game Steps: '}{games}</div>
         <div>
             {(!props.passive&&getEnabled()==true)? <CalcButtons changePlayerToPassive={props.changePlayerToPassive} name={props.user.userName} changeEnabeld={props.changeEnabeld} games={games} setgames={setgames} MAX_WIN_NUMBER={MAX_WIN_NUMBER} setplayers={props.setplayers} players={props.players} user={props.user} steps={steps} setsteps={setsteps} setstart={setstart} number={number} setnumber={setnumber} />:null}
-            {props.passive ? <OptionButton changePlayerToActive={props.changePlayerToActive} RangeRandom={RangeRandom} setstart={setstart} name={props.user.userName} games={games} setnumber={setnumber} players={props.players} setsteps={setsteps} setplayers={props.setplayers} /> : null}
+            {props.passive ? <OptionButton removeItemFromPassivePlayers={props.removeItemFromPassivePlayers}passivePlayers={props.passivePlayers} setpassivePlayers={props.setpassivePlayers}changePlayerToActive={props.changePlayerToActive} RangeRandom={RangeRandom} setstart={setstart} name={props.user.userName} games={games} setnumber={setnumber} players={props.players} setsteps={setsteps} setplayers={props.setplayers} /> : null}
         </div>
     </>)
 } export default Player
