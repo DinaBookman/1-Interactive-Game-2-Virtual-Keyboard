@@ -6,17 +6,19 @@ function OptionButton(props) {
     function newGame() {
         props.setnumber(props.RangeRandom)
         props.setsteps(0)
-       props.setstart(false)
+        props.setstart(false)
+        props.changePlayerToActive(props.name)
     }
+
     function exit() {
         localStorage.removeItem(props.name)
-        let profile=props.games
-        localStorage.setItem(props.name,profile)
-       let x=[]
-       props.players.map((p ) => {
-        if(p.userName !=props.name)
-           x.push(p )
-    })
+        let profile = props.games
+        localStorage.setItem(props.name, profile)
+        let x = []
+        props.players.map((p) => {
+            if (p.userName != props.name)
+                x.push(p)
+        })
         props.setplayers(x)
     }
     return (
