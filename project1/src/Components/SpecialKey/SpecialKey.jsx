@@ -1,7 +1,7 @@
 import React, { createElement, useState } from 'react'
 import { HexColorPicker } from "react-colorful";
 function SpecialKey(props) {
-    const[openColor,setopenColor]=useState(false)
+    const [openColor, setopenColor] = useState(false)
     function setOutput(type) {
         switch (type) {
             case "Delete":
@@ -49,11 +49,11 @@ function SpecialKey(props) {
                 } break
             case 'UpperAll': {
                 props.addUndo(() => { props.setoutput(props.output) })
-               let x = props.output.map((e) => {
-                let key=e.props.children;
+                let x = props.output.map((e) => {
+                    let key = e.props.children;
                     if (e.props.children.charCodeAt(0) > 64 && e.props.children.charCodeAt(0) < 123) {
-                        
-                        key=key.toUpperCase()
+
+                        key = key.toUpperCase()
                     }
                     let object = <span style={e.props.style}>{key}</span>
                     return object
@@ -65,19 +65,19 @@ function SpecialKey(props) {
                     props.addUndo(() => { props.setfontFamily(props.fontFamily) })
                     props.setfontFamily('cursive')
                 } break
-                case 'LowerAll':{
-                    props.addUndo(() => { props.setoutput(props.output) })
-                    let x = props.output.map((e) => {
-                     let key=e.props.children;
-                         if (e.props.children.charCodeAt(0) > 64 && e.props.children.charCodeAt(0) < 123) {
-                             
-                             key=key.toLowerCase()
-                         }
-                         let object = <span style={e.props.style}>{key}</span>
-                         return object
-                     })
-                     props.setoutput(x)
-                }break;
+            case 'LowerAll': {
+                props.addUndo(() => { props.setoutput(props.output) })
+                let x = props.output.map((e) => {
+                    let key = e.props.children;
+                    if (e.props.children.charCodeAt(0) > 64 && e.props.children.charCodeAt(0) < 123) {
+
+                        key = key.toLowerCase()
+                    }
+                    let object = <span style={e.props.style}>{key}</span>
+                    return object
+                })
+                props.setoutput(x)
+            } break;
             default:
                 {
                     props.addUndo(() => { props.setColor(props.color) })
@@ -86,22 +86,28 @@ function SpecialKey(props) {
         }
     }
     function createButtons(setOutput) {
-        const specialKeys = ['Delete', 'Space', 'increase Font Size', 'decrease Font Size', 'Clear', 'Undo', 'cursive', 'UpperAll','LowerAll']
+        const specialKeys = ['Delete', 'Space', 'increase Font Size', 'decrease Font Size', 'Clear', 'Undo', 'cursive', 'UpperAll', 'LowerAll']
         let x = specialKeys.map((s) => {
             return <button onClick={() => setOutput(s)}>{s}</button>
         })
         return x
     }
-    function changeOpenColor()
-    {
-        if(openColor)
+    function changeOpenColor() {
+
+        if (openColor) {
+
             setopenColor(false)
-        else setopenColor(true)
+        }
+
+        else {
+            setopenColor(true)
+            props.addUndo(() => { props.setColor(props.color) })
+        }
     }
 
     return (<>{createButtons(setOutput)}
-    {openColor&&<HexColorPicker color={props.color} onChange={props.setColor} />}
-    <button onClick={()=>{changeOpenColor() }}>change color</button>
+        {openColor && <HexColorPicker color={props.color} onChange={props.setColor} />}
+        <button onClick={() => { changeOpenColor() }}>change color</button>
 
     </>)
 }
