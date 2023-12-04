@@ -28,17 +28,19 @@ function CalcButtons(props) {
                 }
                 break;
         }
-      
         props.setnumber(newNum)
 
         if (newNum == props.MAX_WIN_NUMBER) {
             // let comma="";
             // if(games.length>=2)
             //         comma=","
-            let newArrayGames=[...props.games, props.steps + 1]
+            let newArrayGames=[...props.games,props.steps + 1]
             props.setgames(newArrayGames)
             props.setstart(true)
             props.changePlayerToPassive(props.name,newArrayGames)
+            localStorage.removeItem(props.name)
+            let profile = props.games
+            localStorage.setItem(props.name, JSON.stringify(profile))
         }
     }
     return (<>  <button onClick={() => calc('*2')}>{'*2'}</button>

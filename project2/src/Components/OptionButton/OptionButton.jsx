@@ -11,9 +11,6 @@ function OptionButton(props) {
     }
 
     function exit() {
-        localStorage.removeItem(props.name)
-        let profile = props.games
-        localStorage.setItem(props.name, profile)
         props.removeItemFromPassivePlayers(props.name)
     }
     return (
