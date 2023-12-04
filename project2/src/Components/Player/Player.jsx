@@ -8,9 +8,12 @@ function Player(props) {
     const [start, setstart] = useState(false)
     const [steps, setsteps] = useState(0)
     const [number, setnumber] = useState(RangeRandom)
-    let bb = (localStorage.getItem(props.userName) === null)
-    let vv = (bb) ? [] : localStorage.getItem(props.userName)
-    const [games, setgames] = useState(vv)
+    let bb = (localStorage.getItem(props.user.userName) === null)
+    let vv
+    if(props.user.games===[])
+     vv= (bb) ? [] : localStorage.getItem(props.user.userName)
+     else vv=props.user.games
+     const [games, setgames] = useState(vv)
     // function set() {
     //     let x=localStorage.getItem(props.userName) 
     //     if (x==null)
@@ -33,10 +36,10 @@ function Player(props) {
     }
 
     return (<>
-        <div>{"gamer name: "} {props.user.userName}</div>
-        <div>{'press buttons to reach 100: '}{number}</div>
-        <div> {'steps: '}{steps}</div>
-        <div> {'Previous Game Steps: '}{games}</div>
+        <div>gamer name:  {props.user.userName}</div>
+       { !props.passive?<div>press buttons to reach 100: {number}</div>:<div>press Start to start game!</div>}
+        <div> steps: {steps}</div>
+        <div> Previous Game Steps: {games}</div>
         <div>
             {(!props.passive&&getEnabled()==true)? <CalcButtons changePlayerToPassive={props.changePlayerToPassive} name={props.user.userName} changeEnabeld={props.changeEnabeld} games={games} setgames={setgames} MAX_WIN_NUMBER={MAX_WIN_NUMBER} setplayers={props.setplayers} players={props.players} user={props.user} steps={steps} setsteps={setsteps} setstart={setstart} number={number} setnumber={setnumber} />:null}
             {props.passive ? <OptionButton removeItemFromPassivePlayers={props.removeItemFromPassivePlayers}passivePlayers={props.passivePlayers} setpassivePlayers={props.setpassivePlayers}changePlayerToActive={props.changePlayerToActive} RangeRandom={RangeRandom} setstart={setstart} name={props.user.userName} games={games} setnumber={setnumber} players={props.players} setsteps={setsteps} setplayers={props.setplayers} /> : null}

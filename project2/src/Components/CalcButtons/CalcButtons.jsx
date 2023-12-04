@@ -35,9 +35,10 @@ function CalcButtons(props) {
             // let comma="";
             // if(games.length>=2)
             //         comma=","
-            props.setgames([...props.games, props.steps + 1])
+            let newArrayGames=[...props.games, props.steps + 1]
+            props.setgames(newArrayGames)
             props.setstart(true)
-            props.changePlayerToPassive(props.name)
+            props.changePlayerToPassive(props.name,newArrayGames)
         }
     }
     return (<>  <button onClick={() => calc('*2')}>{'*2'}</button>
