@@ -31,9 +31,6 @@ function CalcButtons(props) {
         props.setnumber(newNum)
 
         if (newNum == props.MAX_WIN_NUMBER) {
-            // let comma="";
-            // if(games.length>=2)
-            //         comma=","
             let newArrayGames=[...props.games,props.steps + 1]
             props.setgames(newArrayGames)
             props.setstart(true)
