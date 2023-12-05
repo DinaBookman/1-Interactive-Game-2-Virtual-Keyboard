@@ -16,7 +16,7 @@ function SpecialKey(props) {
                     let update_input = [...props.output, object]
                     props.setoutput(update_input)
                 } break;
-            case 'increase Font Size':
+            /*case 'increase Font Size':
                 {
 
                     if (props.size < 100) {
@@ -30,7 +30,7 @@ function SpecialKey(props) {
                         props.addUndo(() => { props.setsize(props.size) })
                         props.setsize(parseInt(props.size) - 6)
                     }
-                } break;
+                } break;*/
             case 'Clear':
                 {
                     props.addUndo(() => {
@@ -86,7 +86,7 @@ function SpecialKey(props) {
         }
     }
     function createButtons(setOutput) {
-        const specialKeys = ['Delete', 'Space', 'increase Font Size', 'decrease Font Size', 'Clear', 'Undo', 'cursive', 'UpperAll', 'LowerAll']
+        const specialKeys = ['Delete', 'Space',  'Clear', 'Undo', 'cursive', 'UpperAll', 'LowerAll']
         let x = specialKeys.map((s) => {
             return <button onClick={() => setOutput(s)}>{s}</button>
         })
