@@ -8,9 +8,9 @@ function TopGamers(props) {
     function displayTopGamers(topGamers) {
        
         let i = 0
-        let allTopGamers =  topGamers.map((topGamer) => {
+        let allTopGamers =  topGamers.map((topGamer, key) => {
             i++
-            return (topGamer.active&&<div>Top Gamer #{i} is { topGamer.gamer} with an average of: {parseInt(topGamer.average)}</div>)})
+            return (topGamer.active&&<div key={key}>Top Gamer #{i} is { topGamer.gamer} with an average of: {parseInt(topGamer.average)}</div>)})
         return allTopGamers
 
     }

@@ -70,8 +70,8 @@ function Players(props) {
   const [players, setplayers] = useState([])
   const [passivePlayers, setpassivePlayers] = useState([])
   function showPlayer(array, passive) {
-    return (array.map((user) => {
-      return <Player updateWinners={props.updateWinners} removeItemFromPassivePlayers={removeItemFromPassivePlayers} changeEnabeld={changeEnabeld} user={user} passive={passive} players={players} setplayers={setplayers} changePlayerToPassive={changePlayerToPassive} changePlayerToActive={changePlayerToActive} />
+    return (array.map((user,key) => {
+      return <Player key={key} updateWinners={props.updateWinners} removeItemFromPassivePlayers={removeItemFromPassivePlayers} changeEnabeld={changeEnabeld} user={user} passive={passive} players={players} setplayers={setplayers} changePlayerToPassive={changePlayerToPassive} changePlayerToActive={changePlayerToActive} />
     }))
   }
   return (<>
