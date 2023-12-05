@@ -1,5 +1,6 @@
 import { lazy, useState } from 'react'
 import React from 'react'
+import { flushSync } from 'react-dom';
 function CalcButtons(props) {
   
     function calc(func) {
@@ -28,7 +29,7 @@ function CalcButtons(props) {
                 }
                 break;
         }
-        props.setnumber(newNum)
+        flushSync(() => {props.setnumber(newNum)})
 
         if (newNum == props.MAX_WIN_NUMBER) {
             let newArrayGames=[...props.games,props.steps + 1]
