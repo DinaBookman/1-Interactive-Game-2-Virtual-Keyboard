@@ -2,12 +2,14 @@ import { useState } from 'react'
 import React from 'react'
 import Player from '../Player/Player.jsx'
 
-function Players() {
+function Players(props) {
  
   function addPlayer() {
+  
     let person = prompt("Please enter UserName:", "Name...");
+    let games=JSON.parse( localStorage.getItem(person))
     let enabled;
-    setpassivePlayers([...passivePlayers, { 'userName': person, 'enabled': enabled ,'games':null}])
+    setpassivePlayers([...passivePlayers, { 'userName': person, 'enabled': enabled ,'games':games}])
   }
   function changeEnabeld(name) {
     let newArryPlayers = []
@@ -69,11 +71,11 @@ function Players() {
   const [passivePlayers, setpassivePlayers] = useState([])
   function showPlayer(array, passive) {
     return (array.map((user) => {
-      return <Player removeItemFromPassivePlayers={removeItemFromPassivePlayers} changeEnabeld={changeEnabeld} user={user} passive={passive} players={players} setplayers={setplayers} changePlayerToPassive={changePlayerToPassive} changePlayerToActive={changePlayerToActive} />
+      return <Player updateWinners={props.updateWinners} removeItemFromPassivePlayers={removeItemFromPassivePlayers} changeEnabeld={changeEnabeld} user={user} passive={passive} players={players} setplayers={setplayers} changePlayerToPassive={changePlayerToPassive} changePlayerToActive={changePlayerToActive} />
     }))
   }
   return (<>
-    <button onClick={() => addPlayer()}>add Player</button>
+    <button onLoad={()=>props.updateWinners()} onClick={() => addPlayer()}>add Player</button>
     {showPlayer(players, false)}
     {showPlayer(passivePlayers, true)}
   </>)

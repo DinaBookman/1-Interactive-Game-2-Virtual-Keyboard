@@ -1,11 +1,11 @@
-import { lazy, useState } from 'react'
+ 
 import React from 'react'
-import { flushSync } from 'react-dom';
+ 
 function CalcButtons(props) {
   
     function calc(func) {
         props.changeEnabeld(props.name)
-        props.setsteps(props.steps + 1)
+        props.setsteps((prevSteps)=>prevSteps+1)
         let newNum;
         switch (func) {
             case '*2':
@@ -29,19 +29,20 @@ function CalcButtons(props) {
                 }
                 break;
         }
-        flushSync(() => {props.setnumber(newNum)})
+         
+        props.setnumber(newNum);
+        if (newNum === props.MAX_WIN_NUMBER) {
+            let newArrayGames=[...props.games,props.steps+1];
+            props.setgames(newArrayGames);
+            props.changePlayerToPassive(props.name,newArrayGames);
+            localStorage.removeItem(props.name);
+           // let profile = props.games;
+            localStorage.setItem(props.name, JSON.stringify(newArrayGames));
+            props.updateWinners();
 
-        if (newNum == props.MAX_WIN_NUMBER) {
-            let newArrayGames=[...props.games,props.steps + 1]
-            props.setgames(newArrayGames)
-            props.setstart(true)
-            props.changePlayerToPassive(props.name,newArrayGames)
-            localStorage.removeItem(props.name)
-            let profile = props.games
-            localStorage.setItem(props.name, JSON.stringify(profile))
         }
     }
-    return (<>  <button onClick={() => calc('*2')}>{'*2'}</button>
+    return (<><button onClick={() => calc('*2')}>{'*2'}</button>
         <button onClick={() => calc('/2')}>{'/2'}</button>
         <button onClick={() => calc('+1')}>{'+1'}</button>
         <button onClick={() => calc('-1')}>{'-1'}</button></>)
