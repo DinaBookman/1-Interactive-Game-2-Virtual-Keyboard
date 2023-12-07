@@ -2,8 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 function Language(props) {
     function chooseLang() {
-
-        let displayLang;
+      let displayLang;
         if (props.language === 'English' || props.language === 'CapsLock'||props.language==='LowerCase')
             displayLang = 'Hebrew';
         else displayLang = 'English'
@@ -18,31 +17,19 @@ function Language(props) {
     }
 
     let keyCase = chooseCase()
-    let display = chooseLang()
+    let displayLang = chooseLang()
     function setCase() {
         props.addUndo(() => { props.setlanguage(props.language) })
         props.setlanguage(keyCase)
     }
     function setLangu() {
         props.addUndo(() => { props.setlanguage(props.language) })
-        props.setlanguage(display)
+        props.setlanguage(displayLang)
     }
 
     return (<>
-        <button onClick={() => setLangu()
-
-        }  >
-            {display}
-        </button >
-        <button onClick={() => { setCase() }}>
-            Aa
-        </button>
-        <button onClick={() => {
-            props.setlanguage('emoji')
-            props.addUndo(() => { props.setlanguage(props.language) })
-        }
-        }>{':)'
-            }</button>
-    </>)
+        <button onClick={() => setLangu()} >{displayLang}</button >
+        <button onClick={() => { setCase() }}>Aa</button>
+        <button onClick={() => {props.setlanguage('emoji'); props.addUndo(() => { props.setlanguage(props.language) })}}>{':)'}</button></>)
 }
 export default Language

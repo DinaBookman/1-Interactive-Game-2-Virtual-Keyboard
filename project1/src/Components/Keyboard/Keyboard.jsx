@@ -3,6 +3,9 @@ import React from 'react'
 import SpecialKey from '../SpecialKey/SpecialKey.jsx'
 import Language from '../Language/Language.jsx'
 import Keys from '../Keys/Keys.jsx'
+import Size from '../Size/Size.jsx'
+import Color from '../Color/Color.jsx'
+import Font from '../Font/Font.jsx'
 const undo = []
 
 function Keyboard(props) {
@@ -27,10 +30,12 @@ function Keyboard(props) {
 
   return (<>
       <div id="outPutDiv">{output}</div>
-
     <Keys spanStyles={spanStyles} addUndo={addUndo} language={language} output={output} setoutput={setoutput}/>
-    <SpecialKey output={props.output} setoutput={props.setoutput} setfontFamily={setfontFamily} fontFamily={fontFamily} setColor={setColor} size={fontSize} setsize={setfontSize} addUndo={addUndo} undo={undo} popUndo={popUndo} color={color} />
-    <Language setlanguage={setlanguage} language={language} addUndo={addUndo} />
+    <SpecialKey output={ output} setoutput={setoutput}   fontFamily={fontFamily}   size={fontSize}   addUndo={addUndo} undo={undo} popUndo={popUndo}   />
+    <div><Language setlanguage={setlanguage} language={language} addUndo={addUndo}/>
+    <Size size={fontSize} setsize={setfontSize} addUndo={addUndo}/>
+    <Font setfontFamily={setfontFamily} addUndo={addUndo}/>
+    <Color setColor={setColor} color={color} addUndo={addUndo}/></div>
   </>
   )
 }
