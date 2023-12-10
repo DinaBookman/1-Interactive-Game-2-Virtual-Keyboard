@@ -29,13 +29,15 @@ function Keyboard(props) {
   };
 
   return (<>
+  <link rel='stylesheet' type='css' href='./Keyboard.css'/> 
       <div id="outPutDiv">{output}</div>
-    <Keys spanStyles={spanStyles} addUndo={addUndo} language={language} output={output} setoutput={setoutput}/>
+      <div id="keyboard"><Keys spanStyles={spanStyles} addUndo={addUndo} language={language} output={output} setoutput={setoutput}/>
     <SpecialKey output={ output} setoutput={setoutput}   fontFamily={fontFamily}   size={fontSize}   addUndo={addUndo} undo={undo} popUndo={popUndo}   />
     <div><Language setlanguage={setlanguage} language={language} addUndo={addUndo}/>
     <Size size={fontSize} setsize={setfontSize} addUndo={addUndo}/>
     <Font setfontFamily={setfontFamily} addUndo={addUndo}/>
-    <Color setColor={setColor} color={color} addUndo={addUndo}/></div>
+    <Color setColor={setColor} color={color} addUndo={addUndo}/></div></div>
+    
   </>
   )
 }

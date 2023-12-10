@@ -3,82 +3,59 @@ import React from 'react'
 import Player from '../Player/Player.jsx'
 
 function Players(props) {
- 
-  function addPlayer() {
+     const [players, setplayers] = useState([])
   
-    let person = prompt("Please enter UserName:", "Name...");
-    let games=JSON.parse( localStorage.getItem(person))
-    let enabled;
-    setpassivePlayers([...passivePlayers, { 'userName': person, 'enabled': enabled ,'games':games}])
-  }
-  function changeEnabeld(name) {
-    let newArryPlayers = []
-    for (let i = 0; i < players.length; i++) {
-      if (players[i].userName == name) {
-        players[i].enabled = false
-        newArryPlayers.push(players[i])
-        if (i == players.length - 1) {
-          newArryPlayers[0].enabled = true
-          break;
-        }
-        players[i + 1].enabled = true;
-        newArryPlayers.push(players[i + 1])
-        for (let j = i + 2; j < players.length; j++)
-          newArryPlayers.push(players[j])
-        break;
-      }
-      newArryPlayers.push(players[i])
-    }
-    setplayers(newArryPlayers)
-  }
-  function removeItem(name, array) {
-    let removeItem;
-    let newArray = []
-    for (let i = 0; i < array.length; i++)
-      if (array[i].userName != name)
-        newArray.push(array[i])
-      else removeItem = array[i]
-    return [newArray, removeItem]
-  }
-  function changePlayerToActive(name) {
-    let returnRemove = removeItem(name, passivePlayers)
+     function addPlayer() {
+         let person = prompt("Please enter UserName:", "Name...");
+         let games=JSON.parse( localStorage.getItem(person))
+         setplayers([... players, { 'userName': person, 'active': false , 'enabled' :false,'games':games}])
+} 
 
-    let newPassivePlayers = returnRemove[0]
-    let itemToAdd = returnRemove[1]
-    setpassivePlayers(newPassivePlayers)
-    let enabled;
-    if (players.length == 0)
-      enabled = true
-    else enabled = false
-    setplayers([...players, { 'userName': itemToAdd.userName, 'enabled': enabled, 'games':itemToAdd.games}])
-  }
-  function removeItemFromPassivePlayers(name) {
-    let x = []
-    passivePlayers.map((p) => {
-      if (p.userName != name)
-        x.push(p)
-    })
-    setpassivePlayers(x)
-  }
-  function changePlayerToPassive(name,newArrayGames) {
-    let returnRemove = removeItem(name, players)
-    let newActivePlayers = returnRemove[0]
-    let itemToAdd = returnRemove[1]
-    setplayers(newActivePlayers)
-    setpassivePlayers([...passivePlayers, { 'userName': itemToAdd.userName, 'enabled': itemToAdd.enabled ,'games':newArrayGames}])
-  }
-  const [players, setplayers] = useState([])
-  const [passivePlayers, setpassivePlayers] = useState([])
-  function showPlayer(array, passive) {
-    return (array.map((user,key) => {  return <Player key={key} updateWinners={props.updateWinners} removeItemFromPassivePlayers={removeItemFromPassivePlayers} 
-      changeEnabeld={changeEnabeld} user={user} passive={passive} players={players} setplayers={setplayers} 
-      changePlayerToPassive={changePlayerToPassive} changePlayerToActive={changePlayerToActive} />
+  function changeEnabeld(name) {
+    let newArryPlayers = [];
+    let player;
+    let flag=false;
+    let nextEnabledPlayer;
+    for (let i = 0; i < players.length; i++) {
+      if(flag===true && players[i].active===true){
+        nextEnabledPlayer=i;
+        break;
+     }
+       if (players[i].userName === name) {
+         flag=true;
+         player=i;
+          
+        }
+        
+        if(i==players.length-1)
+           i=-1;
+      }
+      if(player===nextEnabledPlayer)
+            player=-1;
+      for(let j=0;j<players.length ;j++)
+      {
+        if(j===player){
+          newArryPlayers.push({'userName': players[j].userName, 'active': players[j].active , 'enabled' :false,'games':players[j].games});
+        }
+        else if(j===nextEnabledPlayer)
+        {
+          newArryPlayers.push({'userName': players[j].userName, 'active': players[j].active , 'enabled' :true,'games':players[j].games})
+        }
+        else
+           newArryPlayers.push(players[j])
+      }
+      setplayers(newArryPlayers);
+    }
+  function showPlayer(array) {
+    
+    return (array.map((user,key) => {  return <Player key={key} updateWinners={props.updateWinners}   
+      changeEnabeld={changeEnabeld} user={user} players={players}   setplayers={setplayers} 
+        />
     }))
   }
   return (<>
     <button onLoad={()=>props.updateWinners()} onClick={() => addPlayer()}>add Player</button>
-    {showPlayer(players, false)}
-    {showPlayer(passivePlayers, true)}
+    {showPlayer(players)}
   </>)
 
 }

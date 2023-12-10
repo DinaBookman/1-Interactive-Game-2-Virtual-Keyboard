@@ -82,7 +82,8 @@ function Keys(props) {
   }
   function showRows() {
     let rowArrays = [qwerty_mapping1, qwerty_mapping2, qwerty_mapping3, qwerty_mapping4]
-    let qwertyKeys = rowArrays.map((row) => <div>{showKeys(props.language, props.spanStyles, props.output, props.setoutput, props.addUndo,row)} </div>)
+    let qwertyKeys = rowArrays.map((row,key) =>
+    <div key={key}>{showKeys(props.language, props.spanStyles, props.output, props.setoutput, props.addUndo,row)}</div>)
     return qwertyKeys
   }
   return (<>

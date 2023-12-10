@@ -7,16 +7,21 @@ let RangeRandom = () => Math.floor(Math.random() * MAX_WIN_NUMBER)
 function Player(props) {
     const [steps, setsteps] = useState(0)
     const [number, setnumber] = useState(RangeRandom)
-    let bb = (localStorage.getItem(props.user.userName) === null)
-    let vv
-   // if (props.user.games === null)
-        vv = (bb) ? [] : JSON.parse(localStorage.getItem(props.user.userName))
-  //  else vv = props.user.games
-    const [games, setgames] = useState(vv)
+    let isEmpty = (localStorage.getItem(props.user.userName) === null)
+    let startState = (isEmpty) ? [] : JSON.parse(localStorage.getItem(props.user.userName))
+    const [games, setgames] = useState(startState)
+
     let getEnabled = () => {
         for (let i = 0; i < props.players.length; i++) {
             if (props.players[i].userName === props.user.userName)
                 return props.players[i].enabled;
+        }
+    }
+
+    let isActive = () => {
+        for (let i = 0; i < props.players.length; i++) {
+            if (props.players[i].userName === props.user.userName)
+                return props.players[i].active;
         }
     }
     function displayGames() {
@@ -26,12 +31,11 @@ function Player(props) {
     }
     return (<>
         <div>gamer name:  {props.user.userName}</div>
-        {!props.passive ? <><div>press buttons to reach 100: {number}</div><div> steps: {steps}</div></> : <div>press Start to start game!</div>}
-
+        { isActive()? <><div>press buttons to reach 100: {number}</div><div> steps: {steps}</div></> : <div>press Start to start game!</div>}
         <div> Previous Game Steps: {displayGames()}</div>
         <div>
-            {(!props.passive && getEnabled() == true) ? <CalcButtons updateWinners={props.updateWinners}changePlayerToPassive={props.changePlayerToPassive} name={props.user.userName} changeEnabeld={props.changeEnabeld} games={games} setgames={setgames} MAX_WIN_NUMBER={MAX_WIN_NUMBER} setplayers={props.setplayers} players={props.players} user={props.user} steps={steps} setsteps={setsteps}  number={number} setnumber={setnumber} /> : null}
-            {props.passive ? <OptionButton removeItemFromPassivePlayers={props.removeItemFromPassivePlayers} passivePlayers={props.passivePlayers} setpassivePlayers={props.setpassivePlayers} changePlayerToActive={props.changePlayerToActive} RangeRandom={RangeRandom} name={props.user.userName} games={games} setnumber={setnumber} players={props.players} setsteps={setsteps} setplayers={props.setplayers} /> : null}
+            {(isActive() && getEnabled() == true) ? <CalcButtons updateWinners={props.updateWinners} name={props.user.userName} changeEnabeld={props.changeEnabeld} games={games} setgames={setgames} MAX_WIN_NUMBER={MAX_WIN_NUMBER} setplayers={props.setplayers} players={props.players} user={props.user} steps={steps} setsteps={setsteps}  number={number} setnumber={setnumber} /> : null}
+            {!isActive() ? <OptionButton   games={games} user={props.user}   setplayers={props.setplayers}   RangeRandom={RangeRandom} name={props.user.userName}  setnumber={setnumber} players={props.players} setsteps={setsteps}   /> : null}
         </div>
     </>)
 } export default Player
