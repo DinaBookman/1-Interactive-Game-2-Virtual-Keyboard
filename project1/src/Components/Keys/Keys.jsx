@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './Keys.css'
 import React from 'react'
 
 function Keys(props) {
@@ -54,7 +55,7 @@ function Keys(props) {
     setoutput(update_input)
   }
   function createButton(key, spanStyles, output, setoutput, addUndo) {
-    return (<button onClick={() => {
+    return (<button className="key" onClick={() => {
       setOutput(key, spanStyles, output, setoutput, addUndo)
     }
     } >{key}</button>)
@@ -83,7 +84,7 @@ function Keys(props) {
   function showRows() {
     let rowArrays = [qwerty_mapping1, qwerty_mapping2, qwerty_mapping3, qwerty_mapping4]
     let qwertyKeys = rowArrays.map((row,key) =>
-    <div key={key}>{showKeys(props.language, props.spanStyles, props.output, props.setoutput, props.addUndo,row)}</div>)
+    <div className='keyboard-row' key={key}>{showKeys(props.language, props.spanStyles, props.output, props.setoutput, props.addUndo,row)}</div>)
     return qwertyKeys
   }
   return (<>

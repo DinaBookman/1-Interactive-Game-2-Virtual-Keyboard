@@ -1,1 +1,16 @@
- 
+* {
+    box-sizing: inherit;
+  }
+  body {
+    box-sizing: border-box;
+    /* background-color: #404049; */
+    font-family:'VAG Rounded W01 Thin';
+  }
+  .container {
+    max-width: 816px;
+    padding: 30px 8px 8px;
+    margin: 60px auto;
+    box-shadow: inset 1px 1px 0px #f1f1f1, 3px 3px 6px 3px #303038;
+    background-color: #e3e3e3;
+    border-radius: 1px 1px 7px 7px;
+  }
