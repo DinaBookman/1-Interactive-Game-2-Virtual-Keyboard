@@ -3,7 +3,7 @@ import React from 'react'
 function CalcButtons(props) {
   
     function calc(func) {
-        props.changeEnabeld(props.name)
+        let updateArrayPlayers=props.changeEnabeld(props.name)
         props.setsteps((prevSteps)=>prevSteps+1)
         let newNum;
         switch (func) {
@@ -29,20 +29,20 @@ function CalcButtons(props) {
             localStorage.removeItem(props.name);
             localStorage.setItem(props.name, JSON.stringify(newArrayGames));
             props.updateWinners();
-            unActivate()
+            unActivate(updateArrayPlayers)
             
         }
          
        
     }
 
-    let unActivate=()=>{
+    let unActivate=(array)=>{
         let newArray=[];
-        for (let i = 0; i < props.players.length; i++) 
-        if (props.players[i].userName === props.name)
-                newArray.push({ 'userName':props.players[i].userName, 'active':  false , 'enabled' : false,'games':props.players[i].games})
+        for (let i = 0; i < array.length; i++) 
+        if (array[i].userName === props.name)
+                newArray.push({ 'userName':array[i].userName, 'active':  false , 'enabled' : false,'games':array[i].games})
         else
-            newArray.push(props.players[i])
+            newArray.push(array[i])
         props.setplayers(newArray) 
     }
     return (<>

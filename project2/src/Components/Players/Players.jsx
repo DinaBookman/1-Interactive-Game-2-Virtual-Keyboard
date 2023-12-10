@@ -45,6 +45,7 @@ function Players(props) {
            newArryPlayers.push(players[j])
       }
       setplayers(newArryPlayers);
+      return newArryPlayers
     }
   function showPlayer(array) {
     
