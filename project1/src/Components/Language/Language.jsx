@@ -15,9 +15,9 @@ function Language(props) {
         else displayCase = 'CapsLock'
         return displayCase;
     }
-
-    let keyCase = chooseCase()
     let displayLang = chooseLang()
+    let keyCase = chooseCase()
+    
     function setCase() {
         props.addUndo(() => { props.setlanguage(props.language) })
         props.setlanguage(keyCase)
