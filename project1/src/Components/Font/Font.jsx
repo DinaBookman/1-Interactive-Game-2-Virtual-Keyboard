@@ -4,5 +4,5 @@ function Font(props){
         props.addUndo(() => { props.setfontFamily(props.fontFamily) })
         props.setfontFamily('cursive')
     }
-    return(<><button  onClick={()=>setFont()}>cursive</button></>)}
+    return(<><button  className='key' onClick={()=>setFont()}>cursive</button></>)}
 export default Font;

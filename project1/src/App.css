@@ -3,8 +3,12 @@
   }
   body {
     box-sizing: border-box;
-    /* background-color: #404049; */
     font-family:'VAG Rounded W01 Thin';
+    display: flex;
+
+    justify-content: space-around;
+    align-items: flex-end;
+    
   }
   .container {
     max-width: 816px;

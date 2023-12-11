@@ -18,6 +18,6 @@ function Color(props){
     }
     return(<>
      {openColor && <HexColorPicker color={props.color} onChange={props.setColor} />}
-    <button onClick={() => { changeOpenColor() }}>change color</button></>)
+    <button className='key' onClick={() => { changeOpenColor() }}>change color</button></>)
 }
 export default Color;

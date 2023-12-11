@@ -5,9 +5,7 @@ import Keyboard from '../src/Components/Keyboard/Keyboard.jsx'
 function App() {
 
   return (
-    <>
-     <Keyboard className=""/>
-    </>
+     <Keyboard />
   )
 }
 export default App

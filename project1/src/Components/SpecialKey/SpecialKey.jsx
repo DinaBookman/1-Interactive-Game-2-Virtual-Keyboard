@@ -67,11 +67,11 @@ function SpecialKey(props) {
         }
     }
     function createButtons(setOutput) {
-        const specialKeys = ['Delete', 'Space',  'Clear', 'Undo',  'UpperAll', 'LowerAll']
+        const specialKeys = [{'type':'Delete','class':'delete'},{'type': 'Space','class':'key-space-bar'},  {'type':'Clear','class':'clear'}, {'type':'Undo','class':'undo'},  {'type':'UpperAll','class':'upeer'},{'type': 'LowerAll','class':'lower'}]
         let x = specialKeys.map((s) => {
-            return <button onClick={() => setOutput(s)}>{s}</button>
+            return <button className='key' id={s.class}onClick={() => setOutput(s.type)}>{s.type}</button>
         })
-        return x
+        return <div className='keyboard-row'>{x}</div>
     }
   
 

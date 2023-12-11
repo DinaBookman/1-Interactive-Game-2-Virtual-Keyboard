@@ -1,6 +1,7 @@
+
 .keyboard-row {
     display: flex;
-    /* background-color: aqua; */
+   
   }
   .keyboard-row.thin & {
     height: 20px; 
@@ -8,7 +9,7 @@
   .keyboard-row.bottom-row & {
     height: 24px; 
   }
-  
+
   @media (min-width: 640px) {
     /* height: 48px; */
     .keyboard-row.thin & {
@@ -47,28 +48,27 @@
       background-color 0.08s ease,
       box-shadow 0.08s ease;
     cursor: pointer;
-    
-    &:hover {
+  }
+    .key:hover {
       background-color: #fbfbfb;
     }
     
-    &:active {
+    .key:active {
       transform: translateY(1.5px);
       box-shadow: 
           inset 0 -0.5px 0 #aaaaaa,
       inset 0px -1px 1px -1px #fff,
           0px 0.5px 0.75px 0px #999;
     }
-    
-    span {
+
+    /* span {
       display: inline-block;
       vertical-align: middle;
-    }
+    } */
     
-    &::before {
+    .key::before {
       display: inline-block;
       vertical-align: middle;
       height: 100%;
       content: '';
     }
-}

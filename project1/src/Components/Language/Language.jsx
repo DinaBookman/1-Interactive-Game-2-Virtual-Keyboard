@@ -28,8 +28,8 @@ function Language(props) {
     }
 
     return (<>
-        <button onClick={() => setLangu()} >{displayLang}</button >
-        <button onClick={() => { setCase() }}>Aa</button>
-        <button onClick={() => {props.setlanguage('emoji'); props.addUndo(() => { props.setlanguage(props.language) })}}>{':)'}</button></>)
+        <button className='key' onClick={() => setLangu()} >{displayLang}</button >
+        <button className='key'onClick={() => { setCase() }}>Aa</button>
+        <button className='key' onClick={() => {props.setlanguage('emoji'); props.addUndo(() => { props.setlanguage(props.language) })}}>{':)'}</button></>)
 }
 export default Language
