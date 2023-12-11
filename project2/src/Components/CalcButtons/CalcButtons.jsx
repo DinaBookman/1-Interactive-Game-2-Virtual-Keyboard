@@ -1,5 +1,5 @@
 import React from 'react'
- 
+import "./CalcButtons.css"
 function CalcButtons(props) {
   
     function calc(func) {
@@ -46,10 +46,11 @@ function CalcButtons(props) {
         props.setplayers(newArray) 
     }
     return (<>
-        <button onClick={() => calc('*2')}>{'*2'}</button>
-        <button onClick={() => calc('/2')}>{'/2'}</button>
-        <button onClick={() => calc('+1')}>{'+1'}</button>
-        <button onClick={() => calc('-1')}>{'-1'}</button>
+         
+        <button  className='calcButton' itemID='b1' onClick={() => calc('*2')}>{'*2'}</button>
+        <button  className='calcButton' itemID='b2' onClick={() => calc('/2')}>{'/2'}</button>
+        <button  className='calcButton' itemID='b3' onClick={() => calc('+1')}>{'+1'}</button>
+        <button  className='calcButton' itemID='b4' onClick={() => calc('-1')}>{'-1'}</button>
         </>)
 
 } export default CalcButtons

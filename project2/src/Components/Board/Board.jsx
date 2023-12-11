@@ -2,6 +2,7 @@ import { useState } from 'react'
 import React from 'react'
 import Players from '../Players/Players.jsx'
 import TopGamers from '../TopGamers/TopGamers.jsx'
+import "./Board.css"
 function Board() {
   
     let set=[{ 'gamer': "", "average": Number.MAX_SAFE_INTEGER, 'active': false },{ "gamer": "", "average": Number.MAX_SAFE_INTEGER, 'active': false },{ "gamer": "", 'average': Number.MAX_SAFE_INTEGER, 'active': false }]
@@ -49,8 +50,12 @@ function Board() {
     }
  
     return (<>
-        <TopGamers topGamers={topGamers}/>
-        <Players   updateWinners={()=>updateWinners()} />
+    <div className='game'>
+    <TopGamers topGamers={topGamers}/>
+        <h1>SCORE 100</h1>
+    <Players   updateWinners={()=>updateWinners()} />
+    </div>
+       
 
 
     </>)

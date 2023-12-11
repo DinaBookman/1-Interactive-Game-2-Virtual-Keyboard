@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './Players.css'
 import React from 'react'
 import Player from '../Player/Player.jsx'
 
@@ -55,7 +56,7 @@ function Players(props) {
     }))
   }
   return (<>
-    <button onLoad={()=>props.updateWinners()} onClick={() => addPlayer()}>add Player</button>
+    <button  className="addButton" onLoad={()=>props.updateWinners()} onClick={() => addPlayer()}>add Player</button>
     {showPlayer(players)}
   </>)
 

@@ -1,6 +1,6 @@
 import { lazy, useState } from 'react'
 import React from 'react'
-
+import './OptionButton.css'
 
 function OptionButton(props) {
     function newGame() {
@@ -35,7 +35,7 @@ let  activate=()=>{
        props.setplayers(newArray)  
     }
     return (
-        <><button onClick={() => newGame()}>{'Start new Game'}</button>
-        <button onClick={() => exit()}>{'Exit'}</button></>)
+        <><button className='optionB' onClick={() => newGame()}>{'Start new Game'}</button>
+        <button className='optionB' onClick={() => exit()}>{'Exit'}</button></>)
 }
 export default OptionButton;

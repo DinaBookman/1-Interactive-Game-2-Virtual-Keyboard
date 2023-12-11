@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import React from 'react'
-import { flushSync } from 'react-dom';
+import './TopGamers.css'
 
 
 function TopGamers(props) {
@@ -10,7 +10,7 @@ function TopGamers(props) {
         let i = 0
         let allTopGamers =  topGamers.map((topGamer, key) => {
             i++
-            return (topGamer.active&&<div key={key}>Top Gamer #{i} is { topGamer.gamer} with an average of: {parseInt(topGamer.average)}</div>)})
+            return (topGamer.active&&<div className='topB' key={key}>Top Gamer #{i} is { topGamer.gamer} with an average of: {parseInt(topGamer.average)}</div>)})
         return allTopGamers
 
     }

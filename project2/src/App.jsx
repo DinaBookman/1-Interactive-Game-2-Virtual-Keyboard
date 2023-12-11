@@ -6,7 +6,8 @@ function App() {
 
   return (
     <>
-      <Board/>
+    <div className='board'><Board/></div>
+      
     </>
   )
 }

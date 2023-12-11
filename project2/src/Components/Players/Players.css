@@ -1,13 +1,13 @@
-.optionB{
+.addButton{
     color: rgb(255, 255, 255);
     margin:0.25%;
-    width:15%;
+    width:30%;
     border:none;
     background-color: rgba(217, 91, 169, 0.594);
     border-radius: 8px;
     height:  30px;
 }
-.optionB:hover{
+.addButton:hover{
     color: rgb(200, 67, 149);
     background-color: rgba(217, 91, 169, 0.324);
 }

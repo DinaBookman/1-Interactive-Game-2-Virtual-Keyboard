@@ -2,6 +2,7 @@ import { useState } from 'react'
 import React from 'react'
 import OptionButton from '../OptionButton/OptionButton.jsx'
 import CalcButtons from '../CalcButtons/CalcButtons.jsx'
+import './Player.css'
 const MAX_WIN_NUMBER = 10
 let RangeRandom = () => Math.floor(Math.random() * MAX_WIN_NUMBER)
 function Player(props) {
@@ -30,12 +31,15 @@ function Player(props) {
         return display
     }
     return (<>
-        <div>gamer name:  {props.user.userName}</div>
+    <div className='player'>
+    <div>gamer name:  {props.user.userName}</div>
         { isActive()? <><div>press buttons to reach 100: {number}</div><div> steps: {steps}</div></> : <div>press Start to start game!</div>}
         <div> Previous Game Steps: {displayGames()}</div>
         <div>
             {(isActive() && getEnabled() == true) ? <CalcButtons updateWinners={props.updateWinners} name={props.user.userName} changeEnabeld={props.changeEnabeld} games={games} setgames={setgames} MAX_WIN_NUMBER={MAX_WIN_NUMBER} setplayers={props.setplayers} players={props.players} user={props.user} steps={steps} setsteps={setsteps}  number={number} setnumber={setnumber} /> : null}
             {!isActive() ? <OptionButton   games={games} user={props.user}   setplayers={props.setplayers}   RangeRandom={RangeRandom} name={props.user.userName}  setnumber={setnumber} players={props.players} setsteps={setsteps}   /> : null}
         </div>
+    </div>
+        
     </>)
 } export default Player

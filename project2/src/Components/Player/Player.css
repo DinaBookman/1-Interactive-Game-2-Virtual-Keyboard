@@ -1,0 +1,7 @@
+.player{
+    margin: auto;
+    border: 3px solid rgb(217, 91, 169);
+    padding: 10px;
+    align-items: center;
+    margin-top: 1%;
+}
