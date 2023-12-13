@@ -27,11 +27,20 @@ function Keyboard(props) {
     "fontFamily": style[1],
     "fontSize": style[2]
   };
-
+  const displayStyleStyle = {
+      border:"solid 2px rgb(123, 121, 121)",
+    fontFamily:"Courier New', Courier, monospace",
+    fontSize: "20px"
+  };
   return (<>
-        <div id="outPutDiv">{output}</div>
+    <link rel='stylesheet' type='css' href='./Keyboard.css'/> 
+   
+  <div className="display-style" style={displayStyleStyle}><label>color:{style[0]}<br/>
+  font:{style[1]}<br/>
+  size:{style[2]}
+  </label></div>
+        <div className="outPutDiv">{output}</div>
 
-  <link rel='stylesheet' type='css' href='./Keyboard.css'/> 
   <div className='container'>
       <div className="keyboard">
         <Keys spanStyles={spanStyles} addUndo={addUndo} language={language} output={output} setoutput={setoutput}/>
