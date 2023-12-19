@@ -3,7 +3,7 @@ import React from 'react'
 import OptionButton from '../OptionButton/OptionButton.jsx'
 import CalcButtons from '../CalcButtons/CalcButtons.jsx'
 import './Player.css'
-const MAX_WIN_NUMBER = 10
+const MAX_WIN_NUMBER = 100
 let RangeRandom = () => Math.floor(Math.random() * MAX_WIN_NUMBER)
 function Player(props) {
     const [steps, setsteps] = useState(0)

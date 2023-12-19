@@ -2,7 +2,15 @@ import React, { createElement, useState } from 'react'
 function Font(props){
     function setFont(){
         props.addUndo(() => { props.setfontFamily(props.fontFamily) })
-        props.setfontFamily('cursive')
+        if(props.fontFamily=='Inter, system-ui, Avenir, Helvetica, Arial, sans-serif')
+            props.setfontFamily('cursive')
+        else props.setfontFamily('Inter, system-ui, Avenir, Helvetica, Arial, sans-serif')
     }
-    return(<><button  className='key' onClick={()=>setFont()}>cursive</button></>)}
+    function displayFont()
+    {
+        if(props.fontFamily==='cursive')
+        return 'Arial'
+            else return 'Cursive'
+    }
+    return(<><button  className='key' onClick={()=>setFont()}>{displayFont()}</button></>)}
 export default Font;
