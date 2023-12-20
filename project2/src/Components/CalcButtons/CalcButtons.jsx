@@ -32,15 +32,14 @@ function CalcButtons(props) {
             unActivate(updateArrayPlayers)
             
         }
-         
-       
+
     }
 
     let unActivate=(array)=>{
         let newArray=[];
         for (let i = 0; i < array.length; i++) 
         if (array[i].userName === props.name)
-                newArray.push({ 'userName':array[i].userName, 'active':  false , 'enabled' : false,'games':array[i].games})
+                newArray.push({ 'userName':array[i].userName, 'active':  false , 'enabled' : false,'games':array[i].games,'display':true})
         else
             newArray.push(array[i])
         props.setplayers(newArray) 

@@ -30,7 +30,8 @@ function Player(props) {
         games.map((game) => display = display + game + ',')
         return display
     }
-    return (<>
+    return (props.user.display?<>
+
     <div className='player'>
     <div>gamer name:  {props.user.userName}</div>
         { isActive()? <><div>press buttons to reach 100: {number}</div><div> steps: {steps}</div></> : <div>press Start to start game!</div>}
@@ -41,5 +42,5 @@ function Player(props) {
         </div>
     </div>
         
-    </>)
+    </>:null)
 } export default Player

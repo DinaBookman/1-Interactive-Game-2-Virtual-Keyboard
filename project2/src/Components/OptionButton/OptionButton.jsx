@@ -19,7 +19,7 @@ let  activate=()=>{
     let enabled=(count) ?false: true;
     for (let i = 0; i < props.players.length; i++) 
         if (props.players[i].userName === props.name)
-                newArray.push({ 'userName':props.players[i].userName, 'active': true , 'enabled' :enabled,'games':props.players[i].games})
+                newArray.push({ 'userName':props.players[i].userName, 'active': true , 'enabled' :enabled,'games':props.players[i].games,'display':true})
         else
             newArray.push(props.players[i])
     props.setplayers(newArray)  
@@ -28,10 +28,11 @@ let  activate=()=>{
 
  
     function exit() {
-        let newArray=[];
+       let newArray=[];
         for (let i = 0; i < props.players.length; i++) 
            if (props.players[i].userName != props.name)
                newArray.push(props.players[i])
+               else newArray.push({ 'userName': props.user.userName, 'active': props.user.active , 'enabled' :props.user.enabled,'games':props.user.games,'display':false})
        props.setplayers(newArray)  
     }
     return (
