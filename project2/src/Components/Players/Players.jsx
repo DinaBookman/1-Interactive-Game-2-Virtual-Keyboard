@@ -4,27 +4,28 @@ import React from 'react'
 import Player from '../Player/Player.jsx'
 
 function Players(props) {
+
   const [players, setplayers] = useState([])
 
   function addPlayer() {
     let person = prompt("Please enter UserName:", "Name...");
-    if(person){
-    let flag = false
-    let newArray=[]
-    for (let i = 0; i < players.length; i++)
-      if (players[i].userName === person) {
-        newArray.push({ 'userName': players[i].userName, 'active': false, 'enabled': false, 'games': players[i].games, 'display': true })
-        flag = true
+    if (person) {
+      let flag = false
+      let newArray = []
+      for (let i = 0; i < players.length; i++)
+        if (players[i].userName === person) {
+          newArray.push({ 'userName': players[i].userName, 'active': false, 'enabled': false, 'games': players[i].games, 'display': true })
+          flag = true
+        }
+        else
+          newArray.push(players[i])
+      if (flag)
+        setplayers(newArray)
+      else {
+        let games = JSON.parse(localStorage.getItem(person))
+        setplayers([...players, { 'userName': person, 'active': false, 'enabled': false, 'games': games, 'display': true }])
       }
-      else
-        newArray.push(players[i])
-    if (flag)
-      setplayers(newArray)
-    else {
-      let games = JSON.parse(localStorage.getItem(person))
-      setplayers([...players, { 'userName': person, 'active': false, 'enabled': false, 'games': games, 'display': true }])
     }
-  }
   }
 
   function changeEnabeld(name) {
@@ -61,12 +62,10 @@ function Players(props) {
     setplayers(newArryPlayers);
     return newArryPlayers
   }
-  function showPlayer(array) {
 
+  function showPlayer(array) {
     return (array.map((user, key) => {
-      return <Player key={key} updateWinners={props.updateWinners}
-        changeEnabeld={changeEnabeld} user={user} players={players} setplayers={setplayers}
-      />
+      return <Player key={key} updateWinners={props.updateWinners} changeEnabeld={changeEnabeld} user={user} players={players} setplayers={setplayers} />
     }))
   }
   return (<>
