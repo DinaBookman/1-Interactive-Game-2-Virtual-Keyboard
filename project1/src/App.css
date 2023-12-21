@@ -11,7 +11,8 @@
     
   }
   .container {
-    max-width: 500px;
+    width: 100%;
+    max-width: 900px;
     padding: 30px 8px 8px;
     margin: 60px auto;
     box-shadow: inset 1px 1px 0px #f1f1f1, 3px 3px 6px 3px #303038;

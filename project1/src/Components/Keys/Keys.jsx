@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './Keys.css'
 import React from 'react'
 
@@ -48,47 +47,49 @@ function Keys(props) {
     { hebrew: "ץ", english: ".", im: '🤎' },
     { hebrew: ".", english: "/", im: '🖤' }
   ]
+
   function setOutput(key, spanStyles, output, setoutput, addUndo) {
     addUndo(() => { setoutput(output) })
-    let object = <span style={spanStyles}>{key}</span>
-    let update_input = [...output, object]
+    let span = <span style={spanStyles}>{key}</span>
+    let update_input = [...output, span]
     setoutput(update_input)
   }
+
   function createButton(key, spanStyles, output, setoutput, addUndo) {
     return (<button className="key" onClick={() => {
       setOutput(key, spanStyles, output, setoutput, addUndo)
-    }
-    } >{key}</button>)
+    }} >{key}</button>)
   }
-  function showKeys(language, spanStyles, output, setoutput, addUndo,row) {
-    var lang, key;
+
+  function showKeys(language, spanStyles, output, setoutput, addUndo, row) {
+    let lang, key;
     if (language == "English" || language === 'CapsLock' || language === 'LowerCase')
       lang = "english";
     else if (language === 'emoji')
       lang = 'im'
     else
       lang = "hebrew";
-  
-    let x = row.map((e) => {
-      key = e[lang];
+
+    let displayRow = row.map((char) => {
+      key = char[lang];
       if (language == "CapsLock")
-        key = (e[lang]).toUpperCase();
+        key = (char[lang]).toUpperCase();
       if (language == 'LowerCase')
-        key = (e[lang]);
-  
+        key = (char[lang]);
+
       return (createButton(key, spanStyles, output, setoutput, addUndo))
     })
-  
-    return x;
+    return displayRow;
   }
+
   function showRows() {
     let rowArrays = [qwerty_mapping1, qwerty_mapping2, qwerty_mapping3, qwerty_mapping4]
-    let qwertyKeys = rowArrays.map((row,key) =>
-    <div className='keyboard-row' key={key}>{showKeys(props.language, props.spanStyles, props.output, props.setoutput, props.addUndo,row)}</div>)
+    let qwertyKeys = rowArrays.map((row, key) =>
+      <div className='keyboard-row' key={key}>{showKeys(props.language, props.spanStyles, props.output, props.setoutput, props.addUndo, row)}</div>)
     return qwertyKeys
   }
-  return (<>
-    {showRows()}
-  </>)
+
+  return (<>{showRows()}</>)
 }
+
 export default Keys
