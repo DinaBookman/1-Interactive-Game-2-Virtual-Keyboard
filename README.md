@@ -1,9 +1,3 @@
-# Project1_9181_5600
-Miri_and_Dina's_AMAZING_GREAT_BEST_Project1!!
-
-npm create vite@latest
-
- 
-cd "ProjectName"  //  
-npm install
-npm run dev
+**1-Interactive-Game-2-Virtual-Keyboard**
+a virtual keyboard and an interactive 'run to 100' computer game.
+**mark: 98**
